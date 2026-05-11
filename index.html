@@ -14,7 +14,7 @@
         :root {
             --primary-color: #df4d66; /* Tasarımdaki pembe/kırmızı tonu */
             --primary-light: #fbeef0; /* Uçuk pembe arka planlar */
-            --bg-beige: #f6f3eb; /* Krem/bej arka plan */
+            --bg-beige: #ffe08c; /* Krem/bej arka plan */
             --text-dark: #2c1e1a; /* Başlık rengi (koyu kahve/siyah) */
             --text-gray: #555555; /* Metin rengi */
             --font-heading: 'Playfair Display', serif;
@@ -272,7 +272,8 @@
             gap: 20px;
         }
 
-        .gallery-grid img {
+        .gallery-grid img, 
+        .gallery-grid video {
             width: 100%;
             height: 250px;
             object-fit: cover;
@@ -280,8 +281,9 @@
             transition: var(--transition);
         }
 
-        .gallery-grid img:hover {
-            transform: scale(1.02);
+        .gallery-grid img:hover,
+        .gallery-grid video:hover {
+    transform: scale(1.02);
         }
 
         /* --- Hakkımızda --- */
@@ -540,7 +542,7 @@
                     <p>Evliliğe atılan ilk adımda, aileler arası samimi, şık ve zarif söz merasimleri için profesyonel destek sağlıyoruz.</p>
                 </div>
                 <div class="service-card">
-                    <div class="feature-icon"><i class="fa-solid fa-sparkles"></i></div>
+                    <div class="feature-icon"><i class="fa-solid fa-eye"></i></div>
                     <h3>Kına</h3>
                     <p>Geleneksel ve modern dokunuşların harmanlandığı unutulmaz kına geceleri.</p>
                 </div>
@@ -564,12 +566,30 @@
             <p class="section-subtitle">Gerçekleştirdiğimiz etkinliklerden özel anlar. Her biri özenle planlanmış ve kusursuz bir şekilde yönetilmiş organizasyonlar.</p>
             
             <div class="gallery-grid">
-                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800&auto=format&fit=crop" alt="Düğün Organizasyonu">
-                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=800&auto=format&fit=crop" alt="Açık Hava Etkinliği">
-                <img src="https://images.unsplash.com/photo-1530103862676-de8892bc952f?q=80&w=800&auto=format&fit=crop" alt="Doğum Günü Kutlaması">
-                <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?q=80&w=800&auto=format&fit=crop" alt="Masa Düzeni">
-                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop" alt="Açık Hava Düğün">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop" alt="Kurumsal Etkinlik">
+                <video controls poster="/images/video1_kapak.png">
+                    <source src="/images/video1.mov" type="video/mp4">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+                <video controls poster="/images/video3_kapak.png">
+                    <source src="/images/video3.mov" type="video/mp4">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+                <video controls poster="/images/video4_kapak.png">
+                    <source src="/images/video4.mov" type="video/mp4">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+                <video controls poster="/images/video5_kapak.png">
+                    <source src="/images/video5.mov" type="video/mp4">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+                <video controls poster="/images/video6_kapak.png">
+                    <source src="/images/video6.mov" type="video/mp4">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+                <video controls poster="/images/video8_kapak.png">
+                    <source src="/images/video8.mov" type="video/mp4">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
             </div>
         </div>
     </section>
