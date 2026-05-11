@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fem Davet | Profesyonel Organizasyon Hizmeti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- Renk Paleti ve Değişkenler --- */
+        :root {
+            --primary-color: #df4d66; /* Tasarımdaki pembe/kırmızı tonu */
+            --primary-light: #fbeef0; /* Uçuk pembe arka planlar */
+            --bg-beige: #f6f3eb; /* Krem/bej arka plan */
+            --text-dark: #2c1e1a; /* Başlık rengi (koyu kahve/siyah) */
+            --text-gray: #555555; /* Metin rengi */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- Genel Stiller --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Yumuşak kaydırma */
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-gray);
+            line-height: 1.6;
+            background-color: #ffffff;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--text-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 50px;
+            font-size: 1rem;
+        }
+
+        /* Buton Stilleri */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #c94056;
+        }
+
+        .btn-light {
+            background-color: #f2eade;
+            color: var(--text-dark);
+        }
+
+        .btn-light:hover {
+            background-color: #e5dac9;
+        }
+
+        /* --- Navbar --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+            color: var(--text-dark);
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop') center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 80px;
+        }
+
+        #home h1 {
+            color: #fff;
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        /* --- Neden Biz Section --- */
+        .features-section {
+            padding: 100px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            text-align: left;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* --- Planlama CTA Section --- */
+        .cta-section {
+            background-color: var(--bg-beige);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        /* --- Hizmetlerimiz --- */
+        #hizmetler {
+            padding: 100px 0;
+            background-color: var(--bg-beige);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        /* --- Galeri --- */
+        #galeri {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.02);
+        }
+
+        /* --- Hakkımızda --- */
+        #hakkimizda {
+            padding: 100px 0;
+            background-color: var(--bg-beige);
+        }
+
+        .about-card {
+            background: #fff;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            margin-bottom: 50px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .stat-item h2 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .about-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        /* --- İletişim --- */
+        #iletisim {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .contact-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: center;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+            flex: 1;
+        }
+
+        .contact-info-list {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 60px 0 20px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        footer h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+        }
+
+        /* --- Mobil Uyumluluk (Responsive) --- */
+        @media (max-width: 768px) {
+            #home h1 { font-size: 2.5rem; }
+            .nav-links { display: none; /* Mobil menü basitlik için gizlendi, geliştirilebilir */ }
+            .gallery-grid, .stats-grid, .about-info-grid, .contact-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Fem Davet</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Ana Sayfa</a></li>
+                <li><a href="#hizmetler">Hizmetler</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#hakkimizda">Hakkımızda</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="container">
+            <h1>Hayalinizdeki Etkinliği<br>Birlikte Yaratıyoruz</h1>
+            <p>Düğünden doğum gününe, kurumsal etkinliklerden özel organizasyonlara kadar her anınızı unutulmaz kılıyoruz.</p>
+            <div class="hero-buttons">
+                <a href="#hizmetler" class="btn btn-primary">Hizmetleri Keşfet</a>
+                <a href="#iletisim" class="btn btn-light">İletişime Geç</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <span class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Neden Fem Davet?</span>
+            <h2 class="section-title">Profesyonel Organizasyon Hizmeti</h2>
+            <p class="section-subtitle">Yılların deneyimi ve tutkuyla her etkinliği özel kılıyoruz</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                    <h3>Profesyonel Planlama</h3>
+                    <p>Her detayı titizlikle planlıyor, etkinliğinizi kusursuz hale getiriyoruz.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-user-group"></i></div>
+                    <h3>Deneyimli Ekip</h3>
+                    <p>Alanında uzman ekibimizle her türlü etkinliği başarıyla yönetiyoruz.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
+                    <h3>Kaliteli Hizmet</h3>
+                    <p>Yüksek standartlarda hizmet anlayışıyla müşteri memnuniyetini önceliklendiriyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-title">Hayalinizdeki Etkinliği Planlayalım</h2>
+            <p class="section-subtitle">Profesyonel ekibimizle tanışın ve etkinliğinizi birlikte tasarlayalım</p>
+            <a href="#iletisim" class="btn btn-primary">Bizimle İletişime Geçin</a>
+        </div>
+    </section>
+
+    <section id="hizmetler">
+        <div class="container">
+            <h2 class="section-title">Hizmetlerimiz</h2>
+            <p class="section-subtitle">Her türlü etkinlik için profesyonel organizasyon hizmetleri sunuyoruz. Hayalinizdeki etkinliği birlikte gerçekleştirelim.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="feature-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                    <h3>Doğum Günü</h3>
+                    <p>Çocuklar ve yetişkinler için özel tasarlanmış doğum günü partileri. Her yaşa uygun tema ve dekorasyon seçenekleri.</p>
+                </div>
+                <div class="service-card">
+                    <div class="feature-icon"><i class="fa-regular fa-heart"></i></div>
+                    <h3>Nişan</h3>
+                    <p>Hayatınızın en özel gününü unutulmaz kılmak için kapsamlı nişan organizasyon hizmetleri, özenle planlanmış detaylarla sunulur.</p>
+                </div>
+                <div class="service-card">
+                    <div class="feature-icon"><i class="fa-solid fa-ring"></i></div>
+                    <h3>Söz</h3>
+                    <p>Evliliğe atılan ilk adımda, aileler arası samimi, şık ve zarif söz merasimleri için profesyonel destek sağlıyoruz.</p>
+                </div>
+                <div class="service-card">
+                    <div class="feature-icon"><i class="fa-solid fa-sparkles"></i></div>
+                    <h3>Kına</h3>
+                    <p>Geleneksel ve modern dokunuşların harmanlandığı unutulmaz kına geceleri.</p>
+                </div>
+                <div class="service-card">
+                    <div class="feature-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <h3>Hatim</h3>
+                    <p>Manevi değeri yüksek hatim cemiyetleriniz için özenli ve huzurlu organizasyonlar.</p>
+                </div>
+                <div class="service-card">
+                    <div class="feature-icon"><i class="fa-solid fa-briefcase"></i></div>
+                    <h3>Kurumsal Etkinlikler</h3>
+                    <p>Şirket toplantıları, konferanslar ve ürün lansmanları için profesyonel hizmet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeri">
+        <div class="container">
+            <h2 class="section-title">Galeri</h2>
+            <p class="section-subtitle">Gerçekleştirdiğimiz etkinliklerden özel anlar. Her biri özenle planlanmış ve kusursuz bir şekilde yönetilmiş organizasyonlar.</p>
+            
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800&auto=format&fit=crop" alt="Düğün Organizasyonu">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=800&auto=format&fit=crop" alt="Açık Hava Etkinliği">
+                <img src="https://images.unsplash.com/photo-1530103862676-de8892bc952f?q=80&w=800&auto=format&fit=crop" alt="Doğum Günü Kutlaması">
+                <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?q=80&w=800&auto=format&fit=crop" alt="Masa Düzeni">
+                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop" alt="Açık Hava Düğün">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop" alt="Kurumsal Etkinlik">
+            </div>
+        </div>
+    </section>
+
+    <section id="hakkimizda">
+        <div class="container">
+            <h2 class="section-title">Hakkımızda</h2>
+            <p class="section-subtitle">Yıllardan bu yana etkinlik organizasyonu alanında profesyonel hizmet sunuyoruz</p>
+            
+            <div class="about-card">
+                <h3>Fem Davet Hikayesi</h3>
+                <br>
+                <p>Fem Davet, 2026 yılında Bandırma'da etkinlik organizasyonu tutkusuyla yola çıktı. Kurucularımızın "her etkinlik özeldir ve unutulmaz olmalıdır" felsefesiyle başlayan bu yolculuk, bugün bizi Bandırma'nın önde gelen etkinlik organizasyon işletmelerinden biri haline getirdi.</p>
+                <br>
+                <p>Açıldığımızdan bu yana birçok başarılı etkinlik gerçekleştirdik. Nişanlardan kurumsal organizasyonlara, doğum günlerinden özel kutlamalara kadar geniş bir yelpazede hizmet sunuyoruz. Her projede aynı özen, titizlik ve profesyonellikle çalışıyoruz.</p>
+                <br>
+                <p>Deneyimli ekibimiz ile müşterilerimizin hayallerini gerçeğe dönüştürüyoruz. Sizin için de unutulmaz anlar yaratmak için sabırsızlanıyoruz.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h2>50+</h2>
+                    <p>Başarılı Etkinlik</p>
+                </div>
+                <div class="stat-item">
+                    <h2>100+</h2>
+                    <p>Olumlu Geri Dönüş</p>
+                </div>
+                <div class="stat-item">
+                    <h2>100%</h2>
+                    <p>Müşteri Memnuniyeti</p>
+                </div>
+                <div class="stat-item">
+                    <h2>1.</h2>
+                    <p>Bandırma'nın 1 Numaralı Organizasyon Evi</p>
+                </div>
+            </div>
+
+            <div class="about-info-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Misyonumuz</h3>
+                    <p>Her etkinliği unutulmaz kılmak ve müşterilerimizin hayallerini gerçeğe dönüştürmek için tutkuyla çalışıyoruz.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-regular fa-eye"></i></div>
+                    <h3>Vizyonumuz</h3>
+                    <p>Türkiye'nin en güvenilir ve yenilikçi etkinlik organizasyon şirketi olmak, sektörde standartları belirlemek.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-regular fa-bookmark"></i></div>
+                    <h3>Değerlerimiz</h3>
+                    <p>Kalite, güvenilirlik, yaratıcılık ve müşteri memnuniyeti her zaman önceliğimizdir.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+                    <h3>Ekibimiz</h3>
+                    <p>Alanında uzman, deneyimli ve tutkulu profesyonellerden oluşan ekibimizle hizmetinizdeyiz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="iletisim">
+        <div class="container">
+            <h2 class="section-title">İletişim</h2>
+            <p class="section-subtitle">Etkinliğiniz için teklif almak veya sorularınızı sormak için bizimle anında iletişime geçin.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Bize Hızlıca Ulaşın</h3>
+                    <br>
+                    <p>Rezervasyon ve detaylı bilgi için telefon veya WhatsApp üzerinden ekibimize hemen ulaşabilirsiniz.</p>
+                    <div class="contact-buttons">
+                        <a href="https://wa.me/905334457664" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp'tan Yazın</a>
+                        <a href="tel:+905334457664" class="btn btn-outline"><i class="fa-solid fa-phone"></i> Hemen Arayın</a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>İletişim Bilgileri</h3>
+                    <div class="contact-info-list">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <h4>Adres</h4>
+                                <p>Atatürk Bulvarı No: 123, Bandırma, Balıkesir</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <h4>Telefon</h4>
+                                <p>+90 533 445 76 64</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">Fem Davet</div>
+                    <p>Hayalinizdeki etkinliği gerçeğe dönüştürüyoruz. Profesyonel organizasyon hizmetleriyle unutulmaz anlar yaratıyoruz.</p>
+                </div>
+                <div>
+                    <h4>Hızlı Bağlantılar</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Ana Sayfa</a></li>
+                        <li><a href="#hizmetler">Hizmetler</a></li>
+                        <li><a href="#galeri">Galeri</a></li>
+                        <li><a href="#hakkimizda">Hakkımızda</a></li>
+                        <li><a href="#iletisim">İletişim</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>İletişim Bilgileri</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fa-solid fa-location-dot"></i> Atatürk Bulvarı No: 123, Bandırma, Balıkesir</li>
+                        <li><i class="fa-solid fa-phone"></i> +90 533 445 76 64</li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Fem Davet. Tüm hakları saklıdır.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll("section");
+        const navLi = document.querySelectorAll(".nav-links li a");
+
+        window.onscroll = () => {
+            var current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 60) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLi.forEach((a) => {
+                a.classList.remove("active");
+                if (a.getAttribute("href").includes(current)) {
+                    a.classList.add("active");
+                }
+            });
+        };
+    </script>
+</body>
+</html>
